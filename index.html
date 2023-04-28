@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise: Multiplication Table</title>
+    <style>
+      table {
+        display: grid;
+        grid-template-columns: 1fr 1fr 0fr 0fr; 
+        border-collapse: collapse;
+        width: 100%; 
+      }
+
+      th, td {
+        border: 1px solid black;
+        padding: 5px;
+        text-align: center;
+      }
+
+      th:first-child, td:first-child {
+        background-color: lightgray;
+      }
+
+      input[type="number"] {
+        width: 75%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Multiplication Table</h1>
+    <p>Fill in the missing numbers in the multiplication table below:</p>
+   
+    <form id="multiplication-form">
+      <table>
+        <tr>
+          <th></th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td>2</td>
+          <td><input type="number" name="answer1" required></td>
+          <td>6</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td>3</td>
+          <td>6</td>
+          <td><input type="number" name="answer2" required></td>
+        </tr>
+      </table>
+     
+      <br>
+      <input type="submit" value="Submit">
+    </form>
+
+    <script>
+      const form = document.getElementById("multiplication-form");
+      form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const searchParams = new URLSearchParams();
+
+        for (const pair of formData) {
+          searchParams.append(pair[0], pair[1]);
+        }
+
+        const queryString = searchParams.toString();
+        const url = `your_html_file.html?${queryString}`;
+        window.location.href = url;
+      });
+    </script>
+  </body>
+</html>
